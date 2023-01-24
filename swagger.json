@@ -1,0 +1,210 @@
+{
+
+    "openapi": "3.0.0",
+    "info": {
+        "title": "REST",
+        "description": "Documentation from REST API Patrimonio",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/patrimonio": {
+            "summary": "Busca de um patrimonio",
+            "description": "Rota que busca patrimonio",
+            "get": {
+                "tags": [
+                    "patrimonio"
+                ],
+                "parameters": {
+                    "in": "query",
+                    "name": "name",
+                    "type": "string"
+                },
+                "responses": {
+                    "200": {
+                        "description": "A user object.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "integer",
+                                                "format": "int64",
+                                                "example": 4
+                                            },
+                                            "localizacao": {
+                                                "type": "string",
+                                                "example": "rua andradas"
+                                            },
+                                            "descricao": {
+                                                "type": "string",
+                                                "example": "patrimonio x"
+                                            },
+                                            "QuantidadeObservacao":{
+                                                "type":"int64",
+                                                "example":"2"
+                                            },
+                                            "QuantidadeIndexados":{
+                                                "type":"int64",
+                                                "example":"1"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao cadastrar patrimonio"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "patrimonio"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user object.",
+                        "content": {
+                            "application/json": {
+                                "schema": {                                    
+                                    "type": "object",
+                                    "properties": {
+                                        "idIndexados": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "send": "Patrimonio criado com sucesso!"
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Não foi possível buscar o patrimonio"
+                    }
+                },
+                "requestBody": {
+                    
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "idIndexados": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "idIndexados": "teste id"
+                                }
+                            }
+                        }
+                    }
+                },
+                "500":{
+                    "description": "Não foi possível buscar o patrimonio indexado"
+                }
+                }
+        },
+        "/api/indexados": {
+            "summary": "Busca de um patrimonio",
+            "description": "Rota que busca patrimonio",
+            "get": {
+                "tags": [
+                    "indexados"
+                ],
+                "parameters": {
+                    "in": "query",
+                    "name": "name",
+                    "type": "string"
+                },
+                "responses": {
+                    "200": {
+                        "description": "A user object.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 4
+                                        },
+                                        "idIndexados": {
+                                            "type": "object",
+                                            "example": {
+                                                "localizacao": "Rua Teixeira Mota",
+                                                "descricao": "um endereço qualquer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Não foi possível buscar o patrimonio indexado"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "indexados"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user object.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "text": "Indexado com sucesso!"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Não foi possível buscar o patrimonio indexado"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "idIndexados": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "idIndexados": "teste id"
+                                }
+                            }
+                        }
+                    }
+                },
+                "500": {
+                    "description": "Não foi possível buscar o patrimonio indexado"
+                }
+            }
+        }
+    }
+}
